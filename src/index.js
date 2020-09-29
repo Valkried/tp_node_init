@@ -1,5 +1,6 @@
 import express from "express";
 import createRoutes from "./routes";
+import dataImportES6 from "./import/ES6";
 
 const app = express();
 
@@ -16,3 +17,5 @@ app.use("/", function (err, req, res, next) {
 });
 
 app.listen(8888);
+
+dataImportES6.load();
