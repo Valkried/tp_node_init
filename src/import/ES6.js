@@ -1,6 +1,4 @@
-import { response } from "express";
 import https from "https";
-import { type } from "os";
 
 let dataAmiibo = [];
 const typeSet = new Set();
@@ -9,6 +7,36 @@ const amiiboSeriesSet = new Set();
 const gameSeriesSet = new Set();
 
 class ES6 {
+  formatJson = (amiiboArray) => {
+    let formatedJson = { amiibo: [] };
+
+    amiiboArray.forEach((element) => {
+      formatedJson.amiibo.push({ name: element });
+    });
+
+    return formatedJson;
+  };
+
+  getDataAmiibo() {
+    return { amiibo: dataAmiibo };
+  }
+
+  getTypeSet() {
+    return this.formatJson(typeSet);
+  }
+
+  getCharactersSet() {
+    return this.formatJson(charactersSet);
+  }
+
+  getAmiiboSeriesSet() {
+    return this.formatJson(amiiboSeriesSet);
+  }
+
+  getGameSeriesSet() {
+    return this.formatJson(gameSeriesSet);
+  }
+
   request(url, successCallback, errorCallback) {
     https.get(url, (res) => {
       console.log(res.statusCode);
@@ -36,7 +64,7 @@ class ES6 {
           gameSeriesSet.add(amiibo.gameSeries);
         });
 
-        console.log(typeSet, charactersSet, amiiboSeriesSet, gameSeriesSet);
+        console.log(this.getTypeSet());
       });
     });
   }
