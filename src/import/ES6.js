@@ -40,10 +40,12 @@ class ES6 {
   request(url, successCallback, errorCallback) {
     https.get(url, (res) => {
       console.log(res.statusCode);
+
       if (res.statusCode > 399) {
         errorCallback();
         return;
       }
+
       if (res.statusCode === 308) {
         this.request(res.headers.location, successCallback, errorCallback);
         return;
@@ -69,7 +71,6 @@ class ES6 {
         });
 
         successCallback();
-        // errorCallback();
       });
     });
   }

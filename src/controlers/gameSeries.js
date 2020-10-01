@@ -1,7 +1,7 @@
-import ES6 from "../import/ES6";
+import dataImportES6 from "../import/ES6";
 
 const gameSeriesControler = (req, res) => {
-  res.status(200).json(ES6.getGameSeries);
+  res.status(200).json(dataImportES6.getGameSeries);
 };
 
 export default gameSeriesControler;
