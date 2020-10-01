@@ -17,29 +17,33 @@ class ES6 {
     return formatedJson;
   };
 
-  getDataAmiibo() {
+  get getDataAmiibo() {
     return { amiibo: dataAmiibo };
   }
 
-  getTypeSet() {
+  get getTypes() {
     return this.formatJson(typeSet);
   }
 
-  getCharactersSet() {
+  get getCharacters() {
     return this.formatJson(charactersSet);
   }
 
-  getAmiiboSeriesSet() {
+  get getAmiiboSeries() {
     return this.formatJson(amiiboSeriesSet);
   }
 
-  getGameSeriesSet() {
+  get getGameSeries() {
     return this.formatJson(gameSeriesSet);
   }
 
   request(url, successCallback, errorCallback) {
     https.get(url, (res) => {
       console.log(res.statusCode);
+      if (res.statusCode > 399) {
+        errorCallback();
+        return;
+      }
       if (res.statusCode === 308) {
         this.request(res.headers.location, successCallback, errorCallback);
         return;
@@ -64,13 +68,18 @@ class ES6 {
           gameSeriesSet.add(amiibo.gameSeries);
         });
 
-        console.log(this.getTypeSet());
+        successCallback();
+        // errorCallback();
       });
     });
   }
 
   load(successCallback, errorCallback) {
-    this.request("https://www.amiiboapi.com/api/amiibo");
+    this.request(
+      "https://www.amiiboapi.com/api/amiibo",
+      successCallback,
+      errorCallback
+    );
   }
 }
 

@@ -1,5 +1,7 @@
+import ES6 from "../import/ES6";
+
 const gameSeriesControler = (req, res) => {
-  res.status(200).send("Call to gameseries API");
+  res.status(200).json(ES6.getGameSeries);
 };
 
 export default gameSeriesControler;
