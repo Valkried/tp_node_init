@@ -1,7 +1,7 @@
 import dataImportES6 from "../import/ES6";
 
-const charactersControler = (req, res) => {
+const charactersController = (req, res) => {
   res.status(200).json(dataImportES6.getCharacters);
 };
 
-export default charactersControler;
+export default charactersController;

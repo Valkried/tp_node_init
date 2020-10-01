@@ -1,17 +1,17 @@
 import { Router } from "express";
-import amiiboControler from "./controlers/amiibo";
-import amiiboSeriesControler from "./controlers/amiiboSeries";
-import charactersControler from "./controlers/character";
-import gameSeriesControler from "./controlers/gameSeries";
-import typeControler from "./controlers/type";
+import amiiboController from "./controllers/amiibo";
+import amiiboSeriesController from "./controllers/amiiboSeries";
+import charactersController from "./controllers/character";
+import gameSeriesController from "./controllers/gameSeries";
+import typeController from "./controllers/type";
 
 const createRoutes = () => {
   const routes = Router();
-  routes.get("/api/amiibo", amiiboControler);
-  routes.get("/api/type", typeControler);
-  routes.get("/api/gameseries", gameSeriesControler);
-  routes.get("/api/character", charactersControler);
-  routes.get("/api/amiiboseries", amiiboSeriesControler);
+  routes.get("/api/amiibo", amiiboController);
+  routes.get("/api/type", typeController);
+  routes.get("/api/gameseries", gameSeriesController);
+  routes.get("/api/character", charactersController);
+  routes.get("/api/amiiboseries", amiiboSeriesController);
 
   return routes;
 };
