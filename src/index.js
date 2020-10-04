@@ -5,7 +5,10 @@ import dataImportES6 from "./import/ES6";
 
 const dataLoadedSuccess = () => {
   const app = express();
-  const port = "8888";
+
+  // Lors du lancement du serveur avec npm run local, le port doit être préciser en troisième arguement, ex: npm run local 8853;
+  // Si le port n'est pas spécifié, alors le port par defaut sera 8888.
+  const port = process.argv[2] || 8888;
 
   app.set("view engine", "ejs");
 
