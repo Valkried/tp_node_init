@@ -1,10 +1,19 @@
 import dataImportES6 from "../import/ES6";
 
 const amiiboController = (req, res) => {
+  console.log(req.query);
+
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-  res.status(200).json(dataImportES6.getDataAmiibo);
+
+  let amiiboFilteredArray = dataImportES6.getDataAmiibo;
+
+  for (const property in req.query) {
+      amiiboFilteredArray = dataImportES6.getAmiiboByFilter(amiiboFilteredArray, property, req.query[property]);
+  }
+
+  res.status(200).json(amiiboFilteredArray);
 };
 
 export default amiiboController;

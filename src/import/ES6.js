@@ -18,7 +18,7 @@ class ES6 {
   };
 
   get getDataAmiibo() {
-    return { amiibo: dataAmiibo };
+    return { amiibo: dataAmiibo } ;
   }
 
   get getTypes() {
@@ -35,6 +35,10 @@ class ES6 {
 
   get getGameSeries() {
     return this.formatJson(gameSeriesSet);
+  }
+
+  getAmiiboByFilter = (amiiboArray, fieldToTest, filterValue) => {
+    return { amiibo: amiiboArray.amiibo.filter(amiibo => amiibo[fieldToTest] === filterValue) }
   }
 
   request(url, successCallback, errorCallback) {

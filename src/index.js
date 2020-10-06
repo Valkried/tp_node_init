@@ -2,6 +2,7 @@ import path from "path";
 import express from "express";
 import createRoutes from "./routes";
 import dataImportES6 from "./import/ES6";
+import bodyParser from "body-parser"
 
 const dataLoadedSuccess = () => {
   const app = express();
@@ -14,6 +15,8 @@ const dataLoadedSuccess = () => {
 
   app.set("views", path.join(__dirname, "resources/ejsViews/"));
 
+  app.use(bodyParser.json())
+
   app.use("/", express.static("src/resources/static/jquery-amiibo"));
   app.use("/", createRoutes());
   app.use("/", (req, res) => {
@@ -25,7 +28,7 @@ const dataLoadedSuccess = () => {
   });
 
   app.use("/", function (err, req, res, next) {
-    res.status(500).send("Une erreur est survenue!");
+    res.status(500).send("Une erreur 500 est survenue!");
   });
   console.log(`Server started on port : ${port}`);
 
