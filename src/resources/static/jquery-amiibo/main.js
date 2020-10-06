@@ -87,7 +87,7 @@ $(function () {
         });
       });
     }).fail(function () {
-      const localFullListUrl = `http://localhost:${serverPort}/assets/amiibo-local/amiibo-array.json`;
+      const localFullListUrl = `http://127.0.0.1:${serverPort}/assets/amiibo-local/amiibo-array.json`;
 
       // If the request fails (e.g : API crashes), reload it with the local URL
       main(localFullListUrl);

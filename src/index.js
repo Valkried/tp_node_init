@@ -27,7 +27,7 @@ const dataLoadedSuccess = () => {
   app.use("/", function (err, req, res, next) {
     res.status(500).send("Une erreur est survenue!");
   });
-  console.log("server started");
+  console.log(`Server started on port : ${port}`);
 
   app.listen(port);
 };
