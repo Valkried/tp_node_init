@@ -5,38 +5,45 @@ import dataImportES6 from "./import/ES6";
 import bodyParser from "body-parser"
 
 const dataLoadedSuccess = () => {
-  const app = express();
+    const app = express();
 
-  // Lors du lancement du serveur avec npm run local, le port doit être préciser en troisième arguement, ex: npm run local 8853;
-  // Si le port n'est pas spécifié, alors le port par defaut sera 8888.
-  const port = process.argv[2] || 8888;
+    // Lors du lancement du serveur avec npm run local, le port doit être préciser en troisième arguement, ex: npm run local 8853;
+    // Si le port n'est pas spécifié, alors le port par defaut sera 8888.
+    const port = process.argv[2] || 8888;
 
-  app.set("view engine", "ejs");
+    app.set("view engine", "ejs");
 
-  app.set("views", path.join(__dirname, "resources/ejsViews/"));
+    app.set("views", path.join(__dirname, "resources/ejsViews/"));
 
-  app.use(bodyParser.json())
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: false }));
 
-  app.use("/", express.static("src/resources/static/jquery-amiibo"));
-  app.use("/", createRoutes());
-  app.use("/", (req, res) => {
-    res.render("index", { port: port });
-  });
+    app.use("/", express.static("src/resources/static/jquery-amiibo"));
 
-  app.use("/", function (req, res, next) {
-    res.status(404).sendFile(__dirname + "/404.png");
-  });
+    app.use("/", createRoutes());
 
-  app.use("/", function (err, req, res, next) {
-    res.status(500).send("Une erreur 500 est survenue!");
-  });
-  console.log(`Server started on port : ${port}`);
+    app.get('/addType', (req, res) => {
+        res.render('addType');
+    });
 
-  app.listen(port);
+    app.get("/", (req, res) => {
+        res.render("index", { port: port });
+    });
+
+    app.use("/", function (req, res, next) {
+        res.status(404).sendFile(__dirname + "/404.png");
+    });
+
+    app.use("/", function (err, req, res, next) {
+        res.status(500).send("Une erreur 500 est survenue!");
+    });
+    console.log(`Server started on port : ${port}`);
+
+    app.listen(port);
 };
 
 const dataLoadedError = () => {
-  console.log("An error occured loading datas");
+    console.log("An error occured loading datas");
 };
 
 dataImportES6.load(dataLoadedSuccess, dataLoadedError);

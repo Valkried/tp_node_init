@@ -3,10 +3,13 @@ import amiiboController from "./controllers/amiibo";
 import amiiboSeriesController from "./controllers/amiiboSeries";
 import charactersController from "./controllers/character";
 import gameSeriesController from "./controllers/gameSeries";
-import typeController from "./controllers/type";
+import typeController, { addType } from "./controllers/type";
 
 const createRoutes = () => {
   const routes = Router();
+
+  routes.post('/api/type', addType);
+
   routes.get("/api/amiibo", amiiboController);
   routes.get("/api/type", typeController);
   routes.get("/api/gameseries", gameSeriesController);

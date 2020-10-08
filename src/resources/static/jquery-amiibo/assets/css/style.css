@@ -17,6 +17,31 @@ body {
     height: 100vh;
 }
 
+body#add-type {
+    background-color: var(--dark-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body > form {
+    padding: 50px 100px;
+    border: 5px solid black;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--light-color);
+}
+
+body > form > label, body > form > input {
+    margin-bottom: 20px;
+}
+
+body > form > input, body > form > button {
+    width: 200px;
+}
+
 body > nav {
     background-color: var(--dark-color);
     display: flex;
